@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizky — Portofolio</title>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* =====================================================
+   RESET & BODY
+===================================================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+body{
+    background:#03030a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =====================================================
+   PARTICLE BACKGROUND
+===================================================== */
+canvas#stars{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-5;
+}
+
+/* =====================================================
+   CYBER NEON GRADIENT
+===================================================== */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at 20% 30%, rgba(0,255,255,0.12), transparent 55%),
+               radial-gradient(circle at 80% 70%, rgba(255,0,255,0.12), transparent 55%);
+    opacity:.5;
+    z-index:-4;
+}
+
+/* =====================================================
+   GRID BACKGROUND
+===================================================== */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(rgba(0,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,0.06) 1px, transparent 1px);
+    background-size:50px 50px;
+    animation:grid-move 30s linear infinite;
+    opacity:.25;
+    z-index:-3;
+}
+@keyframes grid-move{
+    to{background-position:300px 300px;}
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+nav{
+    position:fixed;
+    width:100%;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #00eaff;
+    z-index:999;
+}
+nav .logo{
+    font-size:30px;
+    font-weight:700;
+    color:#00eaff;
+    letter-spacing:4px;
+    text-shadow:0 0 18px #00eaff;
+}
+nav ul{
+    display:flex;
+    gap:35px;
+}
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:.3s;
+}
+nav ul li a:hover,
+nav ul li a.active{
+    color:#00eaff;
+    text-shadow:0 0 12px #00eaff;
+}
+
+.menu-btn{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
+}
+@media(max-width:768px){
+    .menu-btn{display:block;}
+    nav ul{
+        position:absolute;
+        top:75px;
+        right:25px;
+        width:220px;
+        flex-direction:column;
+        gap:20px;
+        padding:20px;
+        background:rgba(0,0,0,.9);
+        border:1px solid #00eaff;
+        border-radius:12px;
+        display:none;
+    }
+    nav ul.show{display:flex;}
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+.hero{
+    padding:180px 20px 120px;
+    text-align:center;
+}
+
+/* PHOTO HOLOGRAM 3D */
+.photo-box{
+    width:240px;
+    height:240px;
+    margin:auto;
+    border-radius:50%;
+    border:4px solid #00eaff;
+    box-shadow:0 0 40px #00eaff;
+    overflow:hidden;
+    position:relative;
+    transition:.6s;
+    transform-style:preserve-3d;
+}
+.photo-box:hover{
+    transform:rotateY(12deg) rotateX(12deg) scale(1.07);
+    box-shadow:0 0 55px #00eaff;
+}
+.photo-box::before{
+    content:"";
+    position:absolute;
+    top:-80%;
+    left:0;
+    width:100%;
+    height:40%;
+    background:rgba(0,255,255,0.25);
+    animation:holoScan 3s infinite linear;
+}
+@keyframes holoScan{
+    from{top:-40%;}
+    to{top:120%;}
+}
+
+/* PHOTO */
+.photo-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* GLITCH TITLE */
+.hero h1{
+    margin-top:30px;
+    font-size:60px;
+    position:relative;
+    color:#00eaff;
+    text-shadow:0 0 25px #00eaff;
+}
+.hero h1::before,
+.hero h1::after{
+    content:"Risky — Web Developer";
+    position:absolute;
+    left:0;
+    top:0;
+    opacity:.7;
+}
+.hero h1::before{
+    color:#ff00ff;
+    transform:translate(-3px, -2px);
+    animation:glitch1 2s infinite;
+}
+.hero h1::after{
+    color:#00fff7;
+    transform:translate(3px, 2px);
+    animation:glitch2 1.7s infinite;
+}
+
+@keyframes glitch1{50%{transform:translate(-2px, 2px);} }
+@keyframes glitch2{50%{transform:translate(2px, -2px);} }
+
+/* TEXT HERO */
+.hero p{
+    max-width:680px;
+    margin:auto;
+    opacity:.85;
+}
+
+/* =====================================================
+   SECTION BASE
+===================================================== */
+section{
+    padding:100px 40px;
+    max-width:1100px;
+    margin:auto;
+    transform:translateY(80px);
+    opacity:0;
+    transition:1s;
+}
+section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+h2{
+    text-align:center;
+    font-size:40px;
+    color:#bb00ff;
+    text-shadow:0 0 20px #bb00ff;
+    margin-bottom:50px;
+}
+
+/* =====================================================
+   SKILLS — GLASSMORPHIC NEON TILE
+===================================================== */
+.skills{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:35px;
+}
+.skill-box{
+    padding:35px;
+    border-radius:15px;
+    text-align:center;
+    border:1px solid #8500ff;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 25px rgba(133,0,255,.4);
+    transition:.45s;
+}
+.skill-box:hover{
+    transform:translateY(-14px) scale(1.06);
+    box-shadow:0 0 55px #bb00ff;
+}
+.skill-box i{
+    font-size:55px;
+    margin-bottom:15px;
+    color:#d600ff;
+    text-shadow:0 0 18px #d600ff;
+    animation:float 3s infinite;
+}
+@keyframes float{
+    50%{transform:translateY(-10px);}
+}
+
+/* =====================================================
+   CONTACT BUTTON
+===================================================== */
+.contact button{
+    padding:15px 30px;
+    margin:10px;
+    font-size:18px;
+    font-weight:700;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#7400ff,#00eaff);
+    color:black;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 0 25px #00eaff;
+    transition:.3s;
+}
+.contact button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 45px #7400ff;
+}
+.contact button::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:0;
+    border-radius:50%;
+    background:rgba(255,255,255,0.45);
+    top:var(--y);
+    left:var(--x);
+    transform:translate(-50%,-50%);
+    transition:.4s;
+    opacity:0;
+}
+.contact button:active::after{
+    width:260px;
+    height:260px;
+    opacity:.1;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    opacity:.6;
+    margin-top:45px;
+}
+</style>
+</head>
+<body>
+
+<!-- PARTICLE BACKGROUND -->
+<canvas id="stars"></canvas>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <div class="logo">R I S K Y </div>
+    <ul id="menuList">
+        <li><a href="#home" class="active">Beranda</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#skills">Keahlian</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+    <i class="fa-solid fa-bars menu-btn" onclick="toggleMenu()"></i>
+</nav>
+
+<!-- ================= HERO ================= -->
+<div class="hero" id="home">
+    <div class="photo-box">
+        <img src="https://weary-indigo-pvgbvk35gg-5a0eanvnfq.edgeone.dev/IMG-20250930-WA0018.jpg">
+    </div>
+
+    <h1>Risky — Web Developer</h1>
+    <p>Menghadirkan desain moderen dengan hologram, glitch, dan efek neon tingkat tinggi.</p>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+    <h2>Tentang Saya</h2>
+    <p style="text-align:center;opacity:.8;">
+        Saya menggabungkan teknologi modern dengan estetika futuristik — hologram, neon, glitch, animasi,
+        dan efek 3D untuk menghadirkan pengalaman visual luar biasa.
+    </p>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+    <h2>Keahlian</h2>
+    <div class="skills">
+        <div class="skill-box"><i class="fa-brands fa-html5"></i><h3>HTML</h3></div>
+        <div class="skill-box"><i class="fa-brands fa-css3-alt"></i><h3>CSS</h3></div>
+        <div class="skill-box"><i class="fa-brands fa-js"></i><h3>JavaScript</h3></div>
+        <div class="skill-box"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>UI/UX Futuristik</h3></div>
+    </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact">
+    <h2>Kontak</h2>
+
+    <!-- WhatsApp -->
+    <button onclick="window.open('https://wa.me/6282144588807','_blank')">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+    </button>
+
+    <!-- Email -->
+    <button onclick="window.location.href='mailto:riskyrisky110619@gmail.com'">
+        <i class="fa-sharp fa-regular fa-envelope"></i> Email
+    </button>
+
+    <!-- Instagram -->
+    <button onclick="window.open('https://instagram.com/kyynihhhh','_blank')">
+        <i class="fa-brands fa-instagram"></i> Instagram
+    </button>
+</section>
+
+<footer>© 2025 KyyxDev — Portfolio </footer>
+
+<script>
+/* ================= MENU ================= */
+function toggleMenu(){
+    document.getElementById("menuList").classList.toggle("show");
+}
+
+/* ================= SCROLL REVEAL ================= */
+window.addEventListener("scroll",()=>{
+    document.querySelectorAll("section").forEach(sec=>{
+        if(sec.getBoundingClientRect().top < window.innerHeight - 120){
+            sec.classList.add("show");
+        }
+    });
+});
+
+/* ================= CONTACT RIPPLE ================= */
+document.querySelectorAll(".contact button").forEach(btn=>{
+    btn.addEventListener("click",e=>{
+        let x=e.clientX - btn.offsetLeft;
+        let y=e.clientY - btn.offsetTop;
+        btn.style.setProperty("--x",x+"px");
+        btn.style.setProperty("--y",y+"px");
+    });
+});
+
+/* ================= PARTICLE STARFIELD ================= */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+let w,h,stars=[];
+function init(){
+    w=canvas.width=window.innerWidth;
+    h=canvas.height=window.innerHeight;
+    stars=[];
+    for(let i=0;i<180;i++){
+        stars.push({
+            x:Math.random()*w,
+            y:Math.random()*h,
+            r:Math.random()*2,
+            s:Math.random()*1.5+0.5
+        });
+    }
+}
+function animate(){
+    ctx.clearRect(0,0,w,h);
+    stars.forEach(s=>{
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle="rgba(0,255,255,0.8)";
+        ctx.fill();
+        s.y += s.s;
+        if(s.y > h) s.y = -5;
+    });
+    requestAnimationFrame(animate);
+}
+init(); animate();
+window.onresize=init;
+</script>
+
+</body>
+</html>
