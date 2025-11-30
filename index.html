@@ -25,6 +25,7 @@ body{
     background:#03030a;
     color:white;
     overflow-x:hidden;
+    scroll-behavior:smooth;
 }
 
 /* =====================================================
@@ -60,15 +61,15 @@ body::after{
     position:fixed;
     inset:0;
     background:
-        linear-gradient(rgba(0,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,255,0.06) 1px, transparent 1px);
-    background-size:50px 50px;
-    animation:grid-move 30s linear infinite;
-    opacity:.25;
+        linear-gradient(rgba(0,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,0.04) 1px, transparent 1px);
+    background-size:60px 60px;
+    animation:grid-move 45s linear infinite;
+    opacity:.21;
     z-index:-3;
 }
 @keyframes grid-move{
-    to{background-position:300px 300px;}
+    to{background-position:450px 450px;}
 }
 
 /* =====================================================
@@ -77,25 +78,26 @@ body::after{
 nav{
     position:fixed;
     width:100%;
-    padding:15px 50px;
+    padding:18px 55px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid #00eaff;
+    background:rgba(0,0,15,0.55);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(0,255,255,.4);
     z-index:999;
+    box-shadow:0 0 20px rgba(0,255,255,.25);
 }
 nav .logo{
-    font-size:30px;
+    font-size:32px;
     font-weight:700;
     color:#00eaff;
     letter-spacing:4px;
-    text-shadow:0 0 18px #00eaff;
+    text-shadow:0 0 25px #00eaff;
 }
 nav ul{
     display:flex;
-    gap:35px;
+    gap:40px;
 }
 nav ul li a{
     text-decoration:none;
@@ -106,7 +108,7 @@ nav ul li a{
 nav ul li a:hover,
 nav ul li a.active{
     color:#00eaff;
-    text-shadow:0 0 12px #00eaff;
+    text-shadow:0 0 15px #00eaff;
 }
 
 .menu-btn{
@@ -118,13 +120,13 @@ nav ul li a.active{
     .menu-btn{display:block;}
     nav ul{
         position:absolute;
-        top:75px;
+        top:80px;
         right:25px;
-        width:220px;
+        width:230px;
         flex-direction:column;
         gap:20px;
         padding:20px;
-        background:rgba(0,0,0,.9);
+        background:rgba(0,0,20,.95);
         border:1px solid #00eaff;
         border-radius:12px;
         display:none;
@@ -136,26 +138,26 @@ nav ul li a.active{
    HERO SECTION
 ===================================================== */
 .hero{
-    padding:180px 20px 120px;
+    padding:190px 20px 130px;
     text-align:center;
 }
 
 /* PHOTO HOLOGRAM 3D */
 .photo-box{
-    width:240px;
-    height:240px;
+    width:260px;
+    height:260px;
     margin:auto;
     border-radius:50%;
     border:4px solid #00eaff;
-    box-shadow:0 0 40px #00eaff;
+    box-shadow:0 0 50px #00eaff, inset 0 0 25px rgba(0,255,255,.6);
     overflow:hidden;
     position:relative;
     transition:.6s;
     transform-style:preserve-3d;
 }
 .photo-box:hover{
-    transform:rotateY(12deg) rotateX(12deg) scale(1.07);
-    box-shadow:0 0 55px #00eaff;
+    transform:rotateY(12deg) rotateX(12deg) scale(1.08);
+    box-shadow:0 0 70px #00eaff;
 }
 .photo-box::before{
     content:"";
@@ -171,49 +173,28 @@ nav ul li a.active{
     from{top:-40%;}
     to{top:120%;}
 }
-
-/* PHOTO */
 .photo-box img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-/* GLITCH TITLE */
+/* GLITCH TITLE (tanpa typed effect) */
 .hero h1{
     margin-top:30px;
-    font-size:60px;
+    font-size:65px;
     position:relative;
     color:#00eaff;
     text-shadow:0 0 25px #00eaff;
 }
-.hero h1::before,
-.hero h1::after{
-    content:"Risky — Web Developer";
-    position:absolute;
-    left:0;
-    top:0;
-    opacity:.7;
-}
-.hero h1::before{
-    color:#ff00ff;
-    transform:translate(-3px, -2px);
-    animation:glitch1 2s infinite;
-}
-.hero h1::after{
-    color:#00fff7;
-    transform:translate(3px, 2px);
-    animation:glitch2 1.7s infinite;
-}
-
-@keyframes glitch1{50%{transform:translate(-2px, 2px);} }
-@keyframes glitch2{50%{transform:translate(2px, -2px);} }
 
 /* TEXT HERO */
 .hero p{
     max-width:680px;
     margin:auto;
     opacity:.85;
+    font-size:18px;
+    margin-top:10px;
 }
 
 /* =====================================================
@@ -233,14 +214,14 @@ section.show{
 }
 h2{
     text-align:center;
-    font-size:40px;
+    font-size:42px;
     color:#bb00ff;
-    text-shadow:0 0 20px #bb00ff;
+    text-shadow:0 0 22px #bb00ff;
     margin-bottom:50px;
 }
 
 /* =====================================================
-   SKILLS — GLASSMORPHIC NEON TILE
+   SKILLS — NEON GLASS GRID
 ===================================================== */
 .skills{
     display:grid;
@@ -252,9 +233,9 @@ h2{
     border-radius:15px;
     text-align:center;
     border:1px solid #8500ff;
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(10px);
-    box-shadow:0 0 25px rgba(133,0,255,.4);
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(12px);
+    box-shadow:0 0 30px rgba(133,0,255,.4);
     transition:.45s;
 }
 .skill-box:hover{
@@ -313,11 +294,84 @@ h2{
     opacity:.1;
 }
 
+/* =====================================================
+   BIODATA
+===================================================== */
+.biodata{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid #00eaff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 25px #00eaff;
+}
+.biodata div{
+    padding:10px 15px;
+    border-radius:10px;
+    background:rgba(0,255,255,0.05);
+    text-align:center;
+    transition:.3s;
+}
+.biodata div:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 35px #00eaff;
+}
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+.timeline{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    margin-top:40px;
+}
+.timeline-item{
+    position:relative;
+    padding:25px 35px;
+    border-left:3px solid #bb00ff;
+    background:rgba(255,255,255,0.05);
+    border-radius:10px;
+    box-shadow:0 0 25px #bb00ff;
+    transition:.4s;
+}
+.timeline-item:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:0 0 45px #ff00ff;
+}
+.timeline-item h3{
+    margin-bottom:5px;
+    color:#ff00ff;
+}
+.timeline-item span{
+    font-size:14px;
+    opacity:.7;
+    margin-bottom:10px;
+    display:block;
+}
+.timeline-item p{
+    opacity:.8;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
 footer{
     text-align:center;
     padding:25px;
     opacity:.6;
     margin-top:45px;
+}
+
+/* =====================================================
+   MEDIA QUERY
+===================================================== */
+@media(max-width:768px){
+    .biodata{grid-template-columns:1fr;}
+    .timeline-item{padding:20px;}
 }
 </style>
 </head>
@@ -333,6 +387,7 @@ footer{
         <li><a href="#home" class="active">Beranda</a></li>
         <li><a href="#about">Tentang</a></li>
         <li><a href="#skills">Keahlian</a></li>
+        <li><a href="#education">Pendidikan</a></li>
         <li><a href="#contact">Kontak</a></li>
     </ul>
     <i class="fa-solid fa-bars menu-btn" onclick="toggleMenu()"></i>
@@ -341,8 +396,8 @@ footer{
 <!-- ================= HERO ================= -->
 <div class="hero" id="home">
     <div class="photo-box">
-        <img src="https://s7.ezgif.com/tmp/ezgif-79fbbe08a32b2c59.jpg">
-           </div>
+        <img src="https://xeric-silver-ibb1ettbgv-dsa4wqg8ib.edgeone.dev/IMG-20250930-WA0019.jpg">
+    </div>
 
     <h1>Risky — Web Developer</h1>
     <p>Menghadirkan desain moderen dengan ikon, menu, dan efek animasi tingkat tinggi.</p>
@@ -352,10 +407,16 @@ footer{
 <section id="about">
     <h2>Tentang Saya</h2>
     <p style="text-align:center;opacity:.8;">
-      Hyy, I’m KyyxDev, a dedicated and versatile developer with a strong passion for building efficient, scalable, and impactful software. I love exploring new technologies, improving my craft, and tackling challenging problems with clean and thoughtful solutions. With a mindset of continuous learning and a collaborative spirit, I strive to deliver high-quality work that makes a real difference.
-
-
+      Hyy, I’m KyyxDev, a dedicated and versatile developer with a strong passion for building efficient, scalable, and impactful software.
     </p>
+
+    <div class="biodata">
+        <div><strong>Nama:</strong> Khaerul Rizky</div>
+        <div><strong>Tanggal Lahir:</strong> 15 Desember 2006</div>
+        <div><strong>Alamat:</strong> Kota Bima, Indonesia</div>
+        <div><strong>Email:</strong> riskyrisky110619@gmail.com</div>
+        <div><strong>Telepon:</strong> +62 821-4458-8807</div>
+    </div>
 </section>
 
 <!-- ================= SKILLS ================= -->
@@ -369,21 +430,45 @@ footer{
     </div>
 </section>
 
+<!-- ================= EDUCATION ================= -->
+<section id="education">
+    <h2>Riwayat Pendidikan</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3>SD Negeri 61 Kota Bima</h3>
+            <span>2013 - 2019</span>
+            <p>Pendidikan dasar yang membentuk fondasi ilmu dan karakter saya.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>Pondok Pesantren Al Husainy Kota Bima</h3>
+            <span>2019 - 2022</span>
+            <p>Mengembangkan minat dalam teknologi dan mulai belajar pemrograman dasar.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>Pondok Pesantren Al Husainy Kota Bima</h3>
+            <span>2022 - 2025</span>
+            <p>Menguasai berbagai bahasa pemrograman dan desain web modern.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>Universitas Muhammadiyah Bima</h3>
+            <span>2025 - Sekarang</span>
+            <p>Studi lanjut di bidang Teknik Informatika dan pengembangan software.</p>
+        </div>
+    </div>
+</section>
+
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="contact">
     <h2>Kontak</h2>
 
-    <!-- WhatsApp -->
     <button onclick="window.open('https://wa.me/6282144588807','_blank')">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp
     </button>
 
-    <!-- Email -->
     <button onclick="window.location.href='mailto:riskyrisky110619@gmail.com'">
         <i class="fa-sharp fa-regular fa-envelope"></i> Email
     </button>
 
-    <!-- Instagram -->
     <button onclick="window.open('https://instagram.com/kyynihhhh','_blank')">
         <i class="fa-brands fa-instagram"></i> Instagram
     </button>
@@ -424,12 +509,12 @@ function init(){
     w=canvas.width=window.innerWidth;
     h=canvas.height=window.innerHeight;
     stars=[];
-    for(let i=0;i<180;i++){
+    for(let i=0;i<220;i++){
         stars.push({
             x:Math.random()*w,
             y:Math.random()*h,
             r:Math.random()*2,
-            s:Math.random()*1.5+0.5
+            s:Math.random()*1.7+0.5
         });
     }
 }
